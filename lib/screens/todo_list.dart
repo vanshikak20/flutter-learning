@@ -14,7 +14,6 @@ class Todolist extends StatelessWidget {
         children: [
           Container(
             margin: EdgeInsets.fromLTRB(3,3,1,2),
-            height: 200,
             width: 200,
             decoration: BoxDecoration(
               color: Colors.white,
