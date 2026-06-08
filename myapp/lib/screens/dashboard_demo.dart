@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-void main() {
-  runApp(MaterialApp(
-    title: "awesome app", //when we minimise the app
-    home: HomePage(), //needs to define if it is stateless or statefull
-  ));
-}
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -44,9 +36,9 @@ class HomePage extends StatelessWidget {
 
                   const SizedBox(width: 15),
 
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         "Vanshika Kataria",
                         style: TextStyle(
@@ -74,7 +66,6 @@ class HomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
                 buildCard("Projects", "5", Icons.code),
 
                 buildCard("Skills", "Flutter", Icons.school),
@@ -104,7 +95,6 @@ class HomePage extends StatelessWidget {
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Text(
                     "About Me",
                     style: TextStyle(
@@ -121,6 +111,16 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Navigation Button
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/draw');
+              },
+              child: const Text("Open draw"),
             ),
           ],
         ),
@@ -147,7 +147,6 @@ class HomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           Icon(
             icon,
             color: Colors.white,
