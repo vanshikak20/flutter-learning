@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int selectedIndex = 0;
+
+  final pages = [
+    const Center(child: Text("Home Page")),
+    const Center(child: Text("Favorites Page")),
+    const Center(child: Text("Profile Page")),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        children: [
+          NavigationRail(
+            selectedIndex: selectedIndex,
+            onDestinationSelected: (index) {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+            labelType: NavigationRailLabelType.selected,
+            destinations: const [
+              NavigationRailDestination(
+                icon: Icon(Icons.home_outlined),
+                selectedIcon: Icon(Icons.home),
+                label: Text("Home"),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.favorite_border),
+                selectedIcon: Icon(Icons.favorite),
+                label: Text("Favorites"),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.person_outline),
+                selectedIcon: Icon(Icons.person),
+                label: Text("Profile"),
+              ),
+            ],
+          ),
+
+          const VerticalDivider(thickness: 1, width: 1),
+
+          Expanded(
+            child: pages[selectedIndex],
+          ),
+        ],
+      ),
+    );
+  }
+}
