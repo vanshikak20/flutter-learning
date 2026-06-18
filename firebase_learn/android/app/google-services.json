@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "366474388313",
+    "project_id": "fir-tutorial-e42dc",
+    "storage_bucket": "fir-tutorial-e42dc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366474388313:android:572545df41cda8e979e248",
+        "android_client_info": {
+          "package_name": "com.example.firebase_learn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxkPr2dKdAKk1BDyLTqArUki51kyXjzNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
