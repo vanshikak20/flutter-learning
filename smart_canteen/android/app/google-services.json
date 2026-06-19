@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "604308214208",
+    "project_id": "smart-canteen-1ba1c",
+    "storage_bucket": "smart-canteen-1ba1c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604308214208:android:a7326d0dad3945a4c7f825",
+        "android_client_info": {
+          "package_name": "com.example.smart_canteen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkABlIwZ7_tbB1aDQYZ4-Nlgh_afMwvzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
