@@ -4,6 +4,8 @@ import '../../services/auth_service.dart';
 import '../auth/login_screen.dart';
 import '../student/student_home_screen.dart';
 import '../employee/employee_home_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../student/student_shell.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -22,18 +24,23 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _checkAuthAndNavigate() async {
-    await Future.delayed(const Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 2));
 
-    if (!mounted) return;
+  if (!mounted) return;
 
-    final role = await _authService.getUserRole();
+  final role = await _authService.getUserRole();
 
+  if (!mounted) return;
+
+  // wrap navigation in addPostFrameCallback
+  // this ensures navigation happens AFTER the current frame is done
+  WidgetsBinding.instance.addPostFrameCallback((_) {
     if (!mounted) return;
 
     if (role == 'student') {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const StudentHomeScreen()),
+        MaterialPageRoute(builder: (_) => const StudentShell()),
       );
     } else if (role == 'employee') {
       Navigator.pushReplacement(
@@ -46,7 +53,8 @@ class _SplashScreenState extends State<SplashScreen> {
         MaterialPageRoute(builder: (_) => const LoginScreen()),
       );
     }
-  }
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -65,18 +73,18 @@ class _SplashScreenState extends State<SplashScreen> {
               const SizedBox(height: 20),
               Text(
                 'Smart Canteen',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.white,
+                  color: Colors.white,
                 ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Order smart, skip the queue',
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 16,
-                  color: AppColors.white,
+                  color: Colors.white70,
                 ),
               ),
               const SizedBox(height: 48),

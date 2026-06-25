@@ -6,6 +6,7 @@ import '../../services/auth_service.dart';
 import '../student/student_home_screen.dart';
 import '../employee/employee_home_screen.dart';
 import 'register_screen.dart';
+import '../student/student_shell.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -47,9 +48,9 @@ Future<void> _handleLogin() async {
 
       if (role == 'student') {
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const StudentHomeScreen()),
-        );
+    context,
+    MaterialPageRoute(builder: (_) => const StudentShell()),
+  );
       } else if (role == 'employee') {
         Navigator.pushReplacement(
           context,

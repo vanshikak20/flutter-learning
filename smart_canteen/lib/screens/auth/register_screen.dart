@@ -4,6 +4,7 @@ import '../../services/auth_service.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_field.dart';
 import '../student/student_home_screen.dart';
+import '../student/student_shell.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -48,9 +49,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (!mounted) return;
 
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const StudentHomeScreen()),
-        );
+        context,
+        MaterialPageRoute(builder: (_) => const StudentShell()),
+      );
       } catch (e) {
         setState(() {
           _errorMessage = _getErrorMessage(e.toString());

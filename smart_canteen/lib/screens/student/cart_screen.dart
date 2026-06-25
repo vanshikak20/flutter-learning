@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../providers/cart_provider.dart';
 import '../../widgets/custom_button.dart';
+import '../../services/firestore_service.dart';
+import '../student/order_tracking_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -147,6 +149,52 @@ class CartScreen extends StatelessWidget {
             ),
     );
   }
+  Future<void> _placeOrder(
+  BuildContext context,
+  CartProvider cart,
+) async {
+  if (cart.items.isEmpty) return;
+
+  // show loading dialog
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (_) => const Center(
+      child: CircularProgressIndicator(
+        color: AppColors.primary,
+      ),
+    ),
+  );
+
+  try {
+    final order = await FirestoreService().placeOrder(cart.items.toList());
+
+    cart.clearCart();
+
+    if (!context.mounted) return;
+
+    // close loading dialog
+    Navigator.pop(context);
+
+    // go to order tracking
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => OrderTrackingScreen(order: order),
+      ),
+    );
+  } catch (e) {
+    if (!context.mounted) return;
+    Navigator.pop(context); // close loading dialog
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Failed to place order: $e'),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
+}
+
 
   Widget _quantityButton({
     required IconData icon,
@@ -232,9 +280,7 @@ class CartScreen extends StatelessWidget {
           const SizedBox(height: 20),
           CustomButton(
             label: 'Place Order',
-            onPressed: () {
-              // TODO: order placement in next step
-            },
+            onPressed: () => _placeOrder(context, cart),
           ),
         ],
       ),
